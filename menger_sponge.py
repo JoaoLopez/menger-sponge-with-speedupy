@@ -81,7 +81,7 @@ def plot_slice(normal, point, level, n):
             pt = point + (h*x - 0.5)*k*v + (h*y - 0.5)*k*w
             m[x, y] = 1 - in_sponge(pt, level)
     imshow(m, cmap=cm.gray)
-    show()
+    show(block=False)
 
 # Specify the normal vector of the plane
 # cutting through the cube.
