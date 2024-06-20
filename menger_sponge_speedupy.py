@@ -99,7 +99,7 @@ def main():
     point = (0.5, 0.5, 0.5)
 
     level = 3
-    n = 500
+    n = 245
     plot_slice(normal, point, level, n)
 
 main()
