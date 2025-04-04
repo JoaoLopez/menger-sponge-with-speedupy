@@ -1,5 +1,11 @@
 # Menger Sponge Experiment
 
+## Experiment dependencies
+This experiment has the following dependencies: **numpy, matplotlib**
+
+To install them, execute: **pip install numpy matplotlib**
+
+## Trials Used in the Article
 The five trials used on the memoization techniques article are:
 
 - menger_sponge_speedupy_160.py
