@@ -83,6 +83,6 @@ def main():
     normal = (1, 1, 0.5)
     point = (0.5, 0.5, 0.5)
     level = 3
-    n = 190
+    n = 5000
     plot_slice(normal, point, level, n)
 main()
