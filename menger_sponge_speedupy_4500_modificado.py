@@ -6,7 +6,7 @@ from math import floor, sqrt
 from numpy import empty, array
 from matplotlib.pylab import imshow, cm, show
 
-@deterministic
+@maybe_deterministic
 def outside_unit_cube(triple):
     (x, y, z) = triple
     if x < 0 or y < 0 or z < 0:
@@ -15,7 +15,7 @@ def outside_unit_cube(triple):
         return 1
     return 0
 
-@deterministic
+@maybe_deterministic
 def in_sponge(triple, level):
     """Determine whether a point lies inside the Menger sponge
     after the number of iterations given by 'level.' """
@@ -39,19 +39,19 @@ def in_sponge(triple, level):
             return 0
     return 1
 
-@deterministic
+@maybe_deterministic
 def cross_product(v, w):
     (v1, v2, v3) = v
     (w1, w2, w3) = w
     return (v2 * w3 - v3 * w2, v3 * w1 - v1 * w3, v1 * w2 - v2 * w1)
 
-@deterministic
+@maybe_deterministic
 def length(v):
     """Euclidean length"""
     (x, y, z) = v
     return sqrt(x * x + y * y + z * z)
 
-@maybe_deterministic
+@deterministic
 def plot_slice(normal, point, level, n):
     """Plot a slice through the Menger sponge by
     a plane containing the specified point and having
@@ -75,14 +75,15 @@ def plot_slice(normal, point, level, n):
         for y in range(n):
             pt = point + (h * x - 0.5) * k * v + (h * y - 0.5) * k * w
             m[x, y] = 1 - in_sponge(pt, level)
-    imshow(m, cmap=cm.gray)
-    show(block=False)
+    return m
 
 @initialize_speedupy
 def main():
     normal = (1, 1, 0.5)
     point = (0.5, 0.5, 0.5)
     level = 3
-    n = 3500
-    plot_slice(normal, point, level, n)
+    n = 4500
+    m = plot_slice(normal, point, level, n)
+    imshow(m, cmap=cm.gray)
+    show(block=False)
 main()
